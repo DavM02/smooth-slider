@@ -1,0 +1,156 @@
+:root {
+    --transition: cubic-bezier(.79, .48, .26, .71);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    --webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+body {
+    background-color: rgb(8, 8, 8);
+    overflow-x: hidden;
+}
+
+main {
+    position: relative;
+    z-index: 55;
+}
+
+button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    height: 60px;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    cursor: pointer;
+}
+
+button:hover span {
+    color: rgb(71, 71, 71);
+}
+
+html,
+body,
+main,
+section,
+.slider-wrapper,
+.slider-item-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slider-wrapper {
+    /* min-height: 500px;
+    overflow: auto; */
+    overflow-x: hidden;
+}
+
+
+.slider-wrapper {
+    position: relative;
+}
+
+.slider-item-wrapper {
+    top: 0;
+    position: absolute;
+}
+
+.slider-image {
+    width: 300px;
+    height: 450px;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: center;
+    transition-property: left;
+    /* transition-delay: inherit; */
+    transition-timing-function: var(--transition);
+    transform: translate(-50%, -50%) rotate(var(--rotation, 0deg));
+}
+
+.left,
+.right {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 40;
+}
+
+.left {
+    left: 20px;
+}
+
+.right {
+    right: 20px;
+}
+
+
+
+span {
+    height: 87px;
+    font-size: 70px;
+    display: inline-block;
+    color: rgb(245, 245, 245);
+    transition-timing-function: var(--transition);
+    transition-property: color;
+    transition-duration: .5s;
+}
+
+.noise-texture {
+    background-image: url(assets/noise.gif);
+    background-position: 0 0;
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    height: 100%;
+    left: 0;
+    mix-blend-mode: hard-light;
+    opacity: .13;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 59;
+}
+
+.bg {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: no-repeat center;
+    background-size: cover;
+    filter: blur(5px) hue-rotate(0);
+    transform: scale(1.5);
+    transition: var(--transition) 1s filter, var(--transition) 1s opacity, var(--transition) 1s transform;
+ /* filter: grayscale(1.5); */
+    opacity: 0;
+
+}
+
+.bg.active {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(5px) hue-rotate(-69deg);
+ }
+
+@media all and (max-width: 400px) {
+    .slider-image {
+        width: 250px;
+        height: 350px;
+    }
+
+}
